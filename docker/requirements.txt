@@ -2,3 +2,6 @@ uvicorn
 fastapi
 mysqlclient
 sqlalchemy
+flake8
+isort
+black

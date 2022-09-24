@@ -1,12 +1,14 @@
 import graphene
 from graphene import relay
-from graphene_sqlalchemy import SQLAlchemyObjectType, SQLAlchemyConnectionField
-from models import Department as DepartmentModel, User as UserModel
+from graphene_sqlalchemy import SQLAlchemyConnectionField, SQLAlchemyObjectType
+from models import Department as DepartmentModel
+from models import User as UserModel
+
 
 class User(SQLAlchemyObjectType):
     class Meta:
         model = UserModel
-        interfaces = (relay.Node, )
+        interfaces = (relay.Node,)
 
 
 class UserConnections(relay.Connection):
