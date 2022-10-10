@@ -8,4 +8,5 @@ lint:
 	docker compose run --rm --no-deps api black --check .
 format:
 	docker compose run --rm --no-deps api isort . &
-	docker compose run --rm --no-deps api black .
+	docker compose run --rm --no-deps api autoflake -ri --remove-all-unused-imports --ignore-init-module-imports --remove-unused-variables . &
+	docker compose run --rm --no-deps api black . -l 79

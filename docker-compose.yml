@@ -5,6 +5,7 @@ services:
     image: mysql:5.7
     container_name: db
     environment:
+    # TODO: envから取得する
       MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: testdb
       MYSQL_USER: testuser
@@ -12,7 +13,7 @@ services:
     volumes:
       - ./db/data:/var/lib/mysql
       - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./db/initdb.d:/docker-entrypoint-initdb.d
+      # - ./db/initdb.d:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
     command: --port 3306

@@ -1,9 +1,12 @@
+from datetime import datetime
+
 import strawberry
 
 
 @strawberry.type
 class User:
     id: int
-    first_name: str
-    last_name: str
+    name: str
     email: str
+    created_at: datetime
+    updated_at: datetime
