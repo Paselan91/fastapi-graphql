@@ -19,10 +19,10 @@ class User(BaseModel):
     email: str
 
 
-def main():
-    # テーブル構築
-    Base.metadata.create_all(bind=ENGINE)
+# def main():
+#     # テーブル構築
+#     Base.metadata.create_all(bind=ENGINE)
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

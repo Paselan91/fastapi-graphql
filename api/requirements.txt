@@ -1,5 +1,5 @@
 anyio==3.6.1
-autoflake==1.7.1
+autoflake==1.7.3
 backports.cached-property==1.0.2
 black==22.8.0
 click==8.1.3

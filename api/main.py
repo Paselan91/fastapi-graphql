@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
 
 from contexts.user_contexts import get_context
-from infrastructure.mysql.database import create_tables
+from db import create_tables
 from schemas.queries import Queries
 
 # TODO: 機能していない tableできていない

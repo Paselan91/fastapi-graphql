@@ -1,24 +1,40 @@
+from typing import Iterator
+
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm.session import Session
 
-host = "db:3306"
-db_name = "testdb"
-user = "testuser"
-password = "password"
-
-DATABASE = "mysql://%s:%s@%s/%s?charset=utf8" % (
-    user,
-    password,
-    host,
-    db_name,
+# TODO: envから取得する
+DB_URL = "mysql://{user}:{password}@{host}/{db_name}?charset=utf8".format(
+    **{
+        "user": "testuser",
+        "password": "password",
+        # hostはコンテナ名を指定する
+        "host": "db",
+        "db_name": "testdb",
+    }
 )
 
-ENGINE = create_engine(DATABASE, encoding="utf-8", echo=True)
+engine = create_engine(DB_URL, encoding="utf-8", echo=True)
 
-session = scoped_session(
-    sessionmaker(autocommit=False, autoflush=False, bind=ENGINE)
+SessionLocal = sessionmaker(
+    bind=engine,
+    autocommit=False,
+    autoflush=False,
 )
+
 
 Base = declarative_base()
-Base.query = session.query_property()
+
+
+def create_tables():
+    Base.metadata.create_all(bind=engine)
+
+
+def get_session() -> Iterator[Session]:
+    session: Session = SessionLocal()
+    try:
+        yield session
+    finally:
+        session.close()

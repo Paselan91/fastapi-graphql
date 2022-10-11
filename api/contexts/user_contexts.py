@@ -1,7 +1,7 @@
 from fastapi import Depends
 from strawberry.fastapi import BaseContext
 
-from infrastructure.mysql.database import get_session
+from db import get_session
 from infrastructure.user.user_repository import UserRepository
 from usecases.user.fetch_user_by_id_usecase import FetchUserByIdUsecase
 
