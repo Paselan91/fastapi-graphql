@@ -14,4 +14,5 @@ class UserQuery:
 
     @strawberry.field(description="Get user by user's id")
     def fetchUserById(self, info: Info, id: int) -> UserType:
-        return fetch_user_by_id_query(info, id)
+        usecase = info.context.get_fetch_user_by_id_usecase()
+        return fetch_user_by_id_query(usecase, id)
