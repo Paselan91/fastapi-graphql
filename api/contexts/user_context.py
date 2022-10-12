@@ -1,18 +1,23 @@
+from domain.user.repository.user_repository_interface import (
+    UserRepositoryInterface,
+)
 from fastapi import Depends
-from strawberry.fastapi import BaseContext
-
-from db import get_session
 from infrastructure.user.user_repository import UserRepository
+from strawberry.fastapi import BaseContext
 from usecases.user.fetch_user_by_id_usecase import FetchUserByIdUsecase
 
+from db import get_session
 
-def init_user_repository(session=Depends(get_session)):
+
+def init_user_repository(
+    session=Depends(get_session),
+) -> UserRepositoryInterface:
     return UserRepository(session)
 
 
 def init_fetch_user_by_id_usecase(
-    user_repository: UserRepository = Depends(init_user_repository),
-):
+    user_repository: UserRepositoryInterface = Depends(init_user_repository),
+) -> FetchUserByIdUsecase:
     return FetchUserByIdUsecase(user_repository)
 
 

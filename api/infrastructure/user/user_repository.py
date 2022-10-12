@@ -4,8 +4,9 @@ from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy.orm.session import Session
 
 from domain.user.entity.user_entity import UserEntity
-from domain.user.repository.user_repository_interface import \
-    UserRepositoryInterface
+from domain.user.repository.user_repository_interface import (
+    UserRepositoryInterface,
+)
 from infrastructure.models.user_model import UserModel
 
 

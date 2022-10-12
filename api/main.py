@@ -2,7 +2,7 @@ import strawberry
 from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
 
-from contexts.user_contexts import get_context
+from contexts.user_context import get_context
 from db import create_tables
 from schemas.queries import Queries
 
