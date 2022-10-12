@@ -2,7 +2,7 @@ import strawberry
 from strawberry.types import Info
 
 from resolvers.user.queries.fetch_user_by_id.fetch_user_by_id_query import \
-    fetch_user_by_id_query
+    FetchUserByIdQuery
 from schemas.User.type import User as UserType
 
 
@@ -15,4 +15,5 @@ class UserQuery:
     @strawberry.field(description="Get user by user's id")
     def fetchUserById(self, info: Info, id: int) -> UserType:
         usecase = info.context.get_fetch_user_by_id_usecase()
-        return fetch_user_by_id_query(usecase, id)
+        query = FetchUserByIdQuery
+        return query.exec(usecase, id)
